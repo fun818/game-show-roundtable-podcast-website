@@ -1012,13 +1012,11 @@ The question still remains: Deal or no Deal?">
     </footer>
 
   </div>
-</body>
-
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 
   // --- CONFIG ---
-  const CHAR_LIMIT = 260; // how many chars before "Continue reading"
+  const CHAR_LIMIT = 260;
   const DEBUG = true;
 
   // --- HELPER: truncate string ---
@@ -1031,12 +1029,10 @@ document.addEventListener('DOMContentLoaded', () => {
     return cut + '…';
   }
 
-  // --- LAZY THUMBNAILS ---
+  // --- LAZY LOAD THUMBNAILS ---
   document.querySelectorAll('.ep-thumb').forEach(img => {
     const ds = img.getAttribute('data-src');
-    if(ds && img.src && img.src.includes('R0lGODlhAQABA')) {
-      img.src = ds;
-    }
+    if(ds && img.src && img.src.includes('R0lGODlhAQABA')) img.src = ds;
   });
 
   // --- EXPAND/COLLAPSE DESCRIPTIONS ---
@@ -1046,7 +1042,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if(!desc || !btn) return;
 
     const full = (desc.getAttribute('data-fulltext') || desc.textContent || '').trim();
-    const plain = full.replace(/\s+/g, ' ').trim();
+    const plain = full.replace(/\s+/g,' ').trim();
     const trimmed = truncateString(plain, CHAR_LIMIT);
     const needsTrunc = plain.length > CHAR_LIMIT;
 
@@ -1063,43 +1059,27 @@ document.addEventListener('DOMContentLoaded', () => {
       if(expanded){
         desc.textContent = trimmed;
         btn.textContent = 'Continue reading';
-        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-expanded','false');
       } else {
         desc.textContent = full;
         btn.textContent = 'Read less';
-        btn.setAttribute('aria-expanded', 'true');
+        btn.setAttribute('aria-expanded','true');
       }
     });
   });
 
-  // --- DISABLE RIGHT-CLICK ON AUDIO PLAYERS ---
-  document.querySelectorAll('audio').forEach(audio => {
-    audio.addEventListener('contextmenu', e => {
-      e.preventDefault();
-      alert("Right-click disabled on audio player");
-    });
-  });
-
-  if(DEBUG) console.log("Podcast scripts initialized.");
-
-});
-document.addEventListener('DOMContentLoaded', () => {
-
-  // format seconds into M:SS or H:MM:SS
-  function formatTime(seconds) {
-    if (!isFinite(seconds) || seconds <= 0) return '0:00';
-    const s = Math.floor(seconds % 60).toString().padStart(2, '0');
-    const mTotal = Math.floor(seconds / 60);
+  // --- AUDIO HELPERS ---
+  function formatTime(sec){
+    if(!isFinite(sec) || sec <= 0) return '0:00';
+    const s = Math.floor(sec % 60).toString().padStart(2,'0');
+    const mTotal = Math.floor(sec / 60);
     const h = Math.floor(mTotal / 60);
-    const m = (mTotal % 60).toString().padStart(2, '0');
-    return h > 0 ? `${h}:${m}:${s}` : `${mTotal}:${s}`;
+    const m = (mTotal % 60).toString().padStart(2,'0');
+    return h>0 ? `${h}:${m}:${s}` : `${mTotal}:${s}`;
   }
 
-  // Ensure only one audio plays at a time
-  function pauseAllExcept(exceptAudio) {
-    document.querySelectorAll('.custom-audio-player audio').forEach(a => {
-      if (a !== exceptAudio) a.pause();
-    });
+  function pauseAllExcept(exceptAudio){
+    document.querySelectorAll('audio').forEach(a => { if(a!==exceptAudio) a.pause(); });
   }
 
   document.querySelectorAll('.custom-audio-player').forEach(player => {
@@ -1112,250 +1092,88 @@ document.addEventListener('DOMContentLoaded', () => {
     const volume = player.querySelector('.volume');
     const timeDisplay = player.querySelector('.time');
 
-    if (!audio) return;
+    if(!audio) return;
 
-    // Create a numeric volume display element (0-100) next to the volume slider
+    // Volume number display
     let volNumber = player.querySelector('.volume-number');
-    if (!volNumber) {
+    if(!volNumber){
       volNumber = document.createElement('div');
-      volNumber.className = 'volume-number';
-      volNumber.style.minWidth = '44px';
-      volNumber.style.textAlign = 'right';
-      volNumber.style.fontWeight = '600';
-      volNumber.style.marginLeft = '8px';
-      // append into meta-row if present, otherwise after volume input
+      volNumber.className='volume-number';
+      volNumber.style.minWidth='44px';
+      volNumber.style.textAlign='right';
+      volNumber.style.fontWeight='600';
+      volNumber.style.marginLeft='8px';
       const metaRow = player.querySelector('.meta-row');
-      if (metaRow) metaRow.appendChild(volNumber);
-      else volume.insertAdjacentElement('afterend', volNumber);
+      if(metaRow) metaRow.appendChild(volNumber);
+      else if(volume) volume.insertAdjacentElement('afterend', volNumber);
     }
 
-    // Disable right-click and dragging on audio
-    audio.addEventListener('contextmenu', e => e.preventDefault());
-    audio.addEventListener('dragstart', e => e.preventDefault());
+    // Disable right-click
+    audio.addEventListener('contextmenu', e=>e.preventDefault());
+    audio.addEventListener('dragstart', e=>e.preventDefault());
 
-    // If progress is intended to map to seconds, set its type accordingly.
-    // We'll set progress.max = Math.floor(duration) on loadedmetadata.
-    progress.value = 0;
-
-    // Update UI when metadata is available
+    // Metadata loaded
     audio.addEventListener('loadedmetadata', () => {
-      const dur = isFinite(audio.duration) ? Math.floor(audio.duration) : 0;
-      // If progress is a seconds-based range, set max to duration for accurate seeking
-      progress.max = dur > 0 ? dur : 100;
-      // initial time display
+      progress.max = isFinite(audio.duration) ? Math.floor(audio.duration) : 100;
       timeDisplay.textContent = `${formatTime(0)} / ${formatTime(audio.duration)}`;
     });
 
-    // Update time & progress continually
+    // Update progress/time
     audio.addEventListener('timeupdate', () => {
-      const cur = Math.floor(audio.currentTime || 0);
+      const cur = Math.floor(audio.currentTime||0);
       const dur = isFinite(audio.duration) ? Math.floor(audio.duration) : 0;
       progress.value = cur;
       timeDisplay.textContent = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
-
-      // progress visual fill (gradient) — guard divide by zero
-      const max = Number(progress.max) || 1;
-      const pct = (Number(progress.value) / max) * 100;
-      progress.style.background = `linear-gradient(90deg, #0d6efd ${pct}%, #e9ecef ${pct}%)`;
+      const pct = (progress.value / (progress.max||1))*100;
+      progress.style.background=`linear-gradient(90deg,#0d6efd ${pct}%,#e9ecef ${pct}%)`;
     });
 
-    // Play / Pause behavior
-    playBtn.addEventListener('click', async () => {
-      if (audio.paused) {
+    // Play/Pause
+    playBtn?.addEventListener('click', async () => {
+      if(audio.paused){
         pauseAllExcept(audio);
-        try {
-          await audio.play();
-          playBtn.textContent = 'Pause';
-        } catch (err) {
-          console.warn('Playback failed (autoplay or other):', err);
-        }
+        try{ await audio.play(); playBtn.textContent='Pause'; }
+        catch(err){ console.warn('Playback failed:',err); }
       } else {
         audio.pause();
-        playBtn.textContent = 'Play';
+        playBtn.textContent='Play';
       }
     });
 
-    // Keep play button label in sync
-    audio.addEventListener('play', () => playBtn.textContent = 'Pause');
-    audio.addEventListener('pause', () => playBtn.textContent = 'Play');
-    audio.addEventListener('ended', () => {
-      playBtn.textContent = 'Play';
-      // optionally reset to start
-      // audio.currentTime = 0;
-    });
+    // Sync play/pause text
+    audio.addEventListener('play', ()=>playBtn.textContent='Pause');
+    audio.addEventListener('pause', ()=>playBtn.textContent='Play');
+    audio.addEventListener('ended', ()=>playBtn.textContent='Play');
 
     // Skip buttons
-    skipBack.addEventListener('click', () => {
-      audio.currentTime = Math.max(0, audio.currentTime - 10);
-    });
-    skipFwd.addEventListener('click', () => {
-      audio.currentTime = Math.min(audio.duration || Infinity, audio.currentTime + 10);
-    });
+    skipBack?.addEventListener('click', ()=>audio.currentTime=Math.max(0,audio.currentTime-10));
+    skipFwd?.addEventListener('click', ()=>audio.currentTime=Math.min(audio.duration||Infinity,audio.currentTime+10));
 
     // Playback rate
-    if (rateSel) {
-      rateSel.addEventListener('change', () => {
-        audio.playbackRate = parseFloat(rateSel.value) || 1;
+    if(rateSel){
+      rateSel.addEventListener('change',()=>audio.playbackRate=parseFloat(rateSel.value)||1);
+      audio.playbackRate=parseFloat(rateSel.value)||1;
+    }
+
+    // Progress seek
+    progress?.addEventListener('input', ()=>{ audio.currentTime=Number(progress.value); });
+
+    // Volume
+    if(volume){
+      volume.addEventListener('input', ()=>{
+        audio.volume=Number(volume.value);
+        volNumber.textContent=Math.round(audio.volume*100);
       });
-      // set initial sync
-      audio.playbackRate = parseFloat(rateSel.value) || 1;
+      volNumber.textContent=Math.round(audio.volume*100);
     }
 
-    // Progress seeking: input (drag) and click
-    progress.addEventListener('input', () => {
-      audio.currentTime = Number(progress.value);
+    // Keyboard accessibility
+    playBtn?.addEventListener('keydown', e=>{
+      if(e.code==='Space'){ e.preventDefault(); playBtn.click(); }
     });
-
-    progress.addEventListener('click', (e) => {
-      const rect = progress.getBoundingClientRect();
-      const clickX = e.clientX - rect.left;
-      const ratio = Math.max(0, Math.min(1, clickX / rect.width));
-      const dur = isFinite(audio.duration) ? audio.duration : Number(progress.max);
-      audio.currentTime = Math.floor(dur * ratio);
-    });
-
-// Initialize all audio players
-document.querySelectorAll('audio').forEach(audio => {
-  const playerId = audio.id;
-  const progressSlider = document.querySelector(`.progress[data-audio="${playerId}"]`);
-  const timeDisplay = document.querySelector(`.time[data-audio="${playerId}"]`);
-  const volumeSlider = document.querySelector(`.volume[data-audio="${playerId}"]`);
-  const playBtn = document.querySelector(`.play[data-audio="${playerId}"]`);
-  const skipBack = document.querySelector(`.skip-back[data-audio="${playerId}"]`);
-  const skipForward = document.querySelector(`.skip-forward[data-audio="${playerId}"]`);
-  const speedSelect = document.querySelector(`.speed[data-audio="${playerId}"]`);
-
-  if (!progressSlider || !timeDisplay) return;
-
-  // Set max & step on metadata load
-  audio.addEventListener('loadedmetadata', () => {
-    progressSlider.max = audio.duration;
-    progressSlider.step = 0.01;
-    updateProgressFill();
   });
 
-  // Play/pause
-  playBtn?.addEventListener('click', () => {
-    if (audio.paused) audio.play();
-    else audio.pause();
-  });
-
-  // Skip buttons
-  skipBack?.addEventListener('click', () => audio.currentTime = Math.max(0, audio.currentTime - 10));
-  skipForward?.addEventListener('click', () => audio.currentTime = Math.min(audio.duration, audio.currentTime + 10));
-
-  // Playback speed
-  speedSelect?.addEventListener('change', () => audio.playbackRate = parseFloat(speedSelect.value));
-
-  // Volume
-  volumeSlider?.addEventListener('input', () => audio.volume = parseFloat(volumeSlider.value));
-
-  // Track if user is dragging
-  let seeking = false;
-  progressSlider.addEventListener('mousedown', () => seeking = true);
-  progressSlider.addEventListener('mouseup', () => seeking = false);
-
-  let lastSeekTime = 0;
-  let lastSliderValue = 0;
-
-  // Update currentTime when dragging (throttled)
-  progressSlider.addEventListener('input', () => {
-    const now = performance.now();
-    const diff = Math.abs(progressSlider.value - lastSliderValue);
-    if (seeking && (now - lastSeekTime > 30 || diff > 5)) {
-      audio.currentTime = progressSlider.value;
-      lastSeekTime = now;
-      lastSliderValue = progressSlider.value;
-    }
-    updateProgressFill();
-  });
-
-  // Format time MM:SS
-  function formatTime(seconds) {
-    const m = Math.floor(seconds / 60);
-    const s = Math.floor(seconds % 60).toString().padStart(2, '0');
-    return `${m}:${s}`;
-  }
-
-  // Update time display
-  audio.addEventListener('timeupdate', () => {
-    timeDisplay.textContent = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration || 0)}`;
-    updateProgressFill();
-  });
-
-  // Update slider fill (smooth gradient)
-  function updateProgressFill() {
-    const percentage = (progressSlider.value / progressSlider.max) * 100 || 0;
-    progressSlider.style.background = `linear-gradient(to right, var(--accent) 0%, var(--accent) ${percentage}%, #555 ${percentage}%, #555 100%)`;
-  }
-});
-
-// Keep sliders synced with audio (except when dragging)
-function updateSliders() {
-  document.querySelectorAll('.progress').forEach(slider => {
-    const audio = document.getElementById(slider.dataset.audio);
-    if (!audio) return;
-    if (!slider.matches(':active')) slider.value = audio.currentTime;
-  });
-  requestAnimationFrame(updateSliders);
-}
-requestAnimationFrame(updateSliders);
-
-// Apply for all sliders
-document.querySelectorAll('.progress').forEach(slider => {
-  updateProgressFill(slider);
-  slider.addEventListener('input', () => updateProgressFill(slider));
-  const audio = document.getElementById(slider.dataset.audio);
-  audio.addEventListener('timeupdate', () => updateProgressFill(slider));
-});
-
-    // Volume slider: map 0..1 to 0..100 display
-    // Ensure default volume if missing
-    if (typeof audio.volume === 'number') {
-      // sync initial values
-      if (volume) {
-        audio.volume = Number(volume.value) ?? 1;
-      } else {
-        audio.volume = audio.volume ?? 1;
-      }
-      volNumber.textContent = Math.round(audio.volume * 100);
-    }
-
-    if (volume) {
-      volume.addEventListener('input', () => {
-        const v = Number(volume.value);
-        audio.volume = v;
-        volNumber.textContent = Math.round(v * 100);
-      });
-
-      // also update vol number if audio.volume changed externally
-      audio.addEventListener('volumechange', () => {
-        const v = Number(audio.volume) || 0;
-        volNumber.textContent = Math.round(v * 100);
-        // keep range in sync
-        if (Number(volume.value) !== v) volume.value = v;
-      });
-    }
-
-    // accessibility: keyboard space toggles play/pause for focused button
-    playBtn.addEventListener('keydown', (e) => {
-      if (e.code === 'Space') {
-        e.preventDefault();
-        playBtn.click();
-      }
-    });
-
-    // If the page had autoplay restrictions and loadedmetadata didn't fire,
-    // try to set duration display later if possible
-    setTimeout(() => {
-      if (!isFinite(audio.duration)) return;
-      if (Number(progress.max) !== Math.floor(audio.duration)) {
-        progress.max = Math.floor(audio.duration);
-      }
-      timeDisplay.textContent = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
-    }, 1200);
-
-  });
+  if(DEBUG) console.log("Podcast scripts initialized.");
 
 });
 </script>
