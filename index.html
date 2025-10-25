@@ -319,6 +319,36 @@ h2 {
   text-align: right;
 }
 
+.progress {
+  width: 100%;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #555; /* empty track */
+  border-radius: 3px;
+  outline: none;
+  transition: background 0.1s linear; /* smooth fill */
+}
+
+.progress::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  margin-top: -4px; /* center thumb */
+}
+
+.progress::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+}
+
 /* Thumbnails */
 .ep-thumb {
   width: 140px;
@@ -579,6 +609,56 @@ footer {
 
       <section class="episodes" id="episodes">
 
+        <!-- Episode 5 -->
+<article class="card" id="ep5">
+  <img class="ep-thumb" src="https://storage.buzzsprout.com/ctpbfj7qbebv1am217tywtug3t8a" alt="Episode 5 thumbnail">
+  <div class="ep-body">
+    <h2>Episode 5 | Are You Smarter Than a 5th Grader?</h2>
+    <div class="meta">Oct 24, 2025 • 57:14</div>
+    <!-- Player 5 -->
+    <div class="custom-audio-player">
+      <audio preload="metadata" controlsList="nodownload" src="https://www.buzzsprout.com/2514994/episodes/18071881-episode-5-are-you-smarter-than-a-5th-grader.mp3"></audio>
+      <button class="play-pause">Play</button>
+      <button class="skip-back">« 10s</button>
+      <button class="skip-forward">10s »</button>
+      <label>Speed:
+        <select class="playback-rate">
+          <option value="0.5">0.5x</option>
+          <option value="0.75">0.75x</option>
+          <option value="1" selected>1x</option>
+          <option value="1.25">1.25x</option>
+          <option value="1.5">1.5x</option>
+          <option value="1.75">1.75x</option>
+          <option value="2">2x</option>
+          <option value="2.25">2.25x</option>
+          <option value="2.5">2.5x</option>
+        </select>
+      </label>
+      <div class="volume-wrapper">
+        <input type="range" class="volume" min="0" max="1" step="0.01" value="1">
+        <div class="volume-number">100</div>
+      </div>
+      <input type="range" class="progress" min="0" max="100" value="0">
+      <div class="time"></div>
+    </div>
+    <p class="desc" data-fulltext="In case someone asked you that question, you&#39;d say yes. Most people would believe you. But you&#39;d be wrong, because game show legend Ken Jennings is NOT smarter than a 5th grader!
+
+The game relies on the premise that an adult would not know the information generally taught in elementary school because it is rarely used in adult life by the type of person chosen to be a contestant. Therefore, the show is essentially a test to see how much an adult has retained since graduating elementary school. The show also derives its humor by occasionally displaying the contestant&#39;s educational attainment, implying that in spite of that, they struggle to answer some questions and even have to cheat.
+
+Despite this, the millionaire-style money tree approach to an elementary school quiz combined with a fair amount of Deal or no Deal syndrome type filler, padding and drama, feel contradictory. Instead of high-stakes drama, it often feels like Millionaire, if kids were playing with adult supervision. You can&#39;t make the lighthearted simple nature of the show dramatic.
+
+Jeff Foxworthy also rubs salt in the wound as often as possible, unlike other game show hosts, because it&#39;s almost the antithesis of Millionaire, because instead of looking smart, it&#39;s about not looking dumb.
+
+Five fifth graders (some of whom are also professional child actors) appear on each episode and play along on stage. Prior to the show, the children are provided with workbooks which contain a variety of material, which could be used in the questions asked in the game. The player chooses one to be their &quot;classmate&quot;, who stands at the adjacent podium and also answers each question secretly in writing. Each child acts as the classmate for two consecutive questions, after which another child is picked from those who have not yet played in that game. The classmate&#39;s main role is to provide assistance to the contestant, called &quot;cheats&quot;.
+
+A contestant can walk away (or if they flunk out, they drop to the milestone) at any point with the money they have won, as long as they admit, &quot;I am not smarter than a fifth grader.&quot;
+
+Any contestant who won the $1 million top prize was allowed to face the camera and state, &quot;I am smarter than a 5th grader!&quot;">
+If someone asked you that question, you'd say yes. Most people would believe you. But you'd be wrong, because game show legend Ken Jennings is NOT smarter than a 5th grader…</p>
+<button class="read-more-btn" aria-expanded="false" aria-controls="ep5-desc">Continue reading</button>
+  </div>
+</article>
+
         <!-- Episode 4 -->
         <article class="card" id="ep4">
           <img class="ep-thumb" src="https://storage.buzzsprout.com/houy9t7ljfmfqno0zhkz7l2p9xe5?.jpg" alt="Episode 4 thumbnail">
@@ -612,27 +692,25 @@ footer {
   <div class="time"></div>
 </div>
             <p class="desc" data-fulltext="
-You may leave home and come back to the same house you once were in,
-but it may not feel the same because you may not come back the same person
-you were before. This may be what happened to Millionaire aka WWTBAM.
+You may leave home and come back to the same house you once were in, but it may not feel the same because you may not come back the same person you were before. This may be what happened to Millionaire aka WWTBAM.
 Today we will discuss how everything came full-circle for this half-hour show.
 ----
-American Millionaire was a massive hit in the beginning, spawning a revival in game shows in general and big money, prime time quiz shows in particular (including many other imported shows). 
-Ratings eventually tanked, however, with most people pointing their fastest fingers at ABC for milking the show to the point of overexposure (at one point, it was aired four nights a week).
-It still lived, however, in a more normal (for a game show) weekday afternoon syndication format, but the show's popularity and viewership has dipped quite a bit since then. 
-The U.S. syndicated version was cancelled on May 31, 2019 after 17 seasons.
+American Millionaire was a massive hit in the beginning, spawning a revival in game shows in general and big money, prime time quiz shows in particular (including many other imported shows). Ratings eventually tanked, however, with most people pointing their fastest fingers at ABC for milking the show to the point of overexposure (at one point, it was aired four nights a week). 
+It still lived, however, in a more normal (for a game show) weekday afternoon syndication format, but the show's popularity and viewership has dipped quite a bit since then. The U.S. syndicated version was cancelled on May 31, 2019 after 17 seasons.
 
 So how did this game show change over time with its syndicated, AOL audience, clock, shuffle, and revival of its classic format?
 
-The US version underwent a massive alteration of its format for its ninth syndicated season. The first ten questions were played for amounts ranging from $100 to $25,000, except that the value of each question was randomized, was only revealed once the question is answered correctly, and was added to a bank.
+The US version underwent a massive alteration of its format for its ninth syndicated season. 
+The first ten questions were played for amounts ranging from $100 to $25,000, except that the value of each question was randomized, was only revealed once the question is answered correctly, and was added to a bank.
 
 And no more hot seat.
 
-Additionally, question difficulties and categories were randomized. The lifelines were also changed for this, only Ask the Audience remains alongside two instances of a new lifeline called Jump the Question which lets the player skip over a question, at the expense of not being able to collect the money behind it. 
-For its 2014-15 season, one of the Jumps were replaced by 'Plus One', which is basically Phone-a-Friend except you have to bring the friend with you. In an act of desperation, the 2015-16 season returned to the classic structure, using a 14-question progression and reviving 50:50 in place of the jump.
+Additionally, question difficulties and categories were randomized.
+The lifelines were also changed for this, only Ask the Audience remains alongside two instances of a new lifeline called Jump the Question which lets the player skip over a question, at the expense of not being able to collect the money behind it. 
+For its 2014-15 season, one of the Jumps were replaced by 'Plus One', which is basically Phone-a-Friend except you have to bring the friend with you. 
+In an act of desperation, the 2015-16 season returned to the classic structure, using a 14-question progression and reviving 50:50 in place of the jump.
 
-'Is that your final answer?' - TV Tropes
-">
+'Is that your final answer?' - TV Tropes">
 You may leave home and come back to the same house you once were in, but it may not feel the same because you may not come back the same person you were before. This may be what happened to Millionaire aka WWTBAM…
 </p>
             <button class="read-more-btn" aria-expanded="false" aria-controls="ep4-desc">Continue reading</button>
@@ -672,20 +750,21 @@ You may leave home and come back to the same house you once were in, but it may 
   <div class="time"></div>
 </div>
             <p class="desc" data-fulltext="
-Laura Medrano has a secret obsession: Not only is she a game show contestant,
-she is a bit of a game show fanatic!
+Laura Medrano has a secret obsession: Not only is she a game show contestant, she is a bit of a game show fanatic!
 
-Game Show Appearances: The Blind Date, Minute to Win It: Girls Got Game (Season 2 Episode 39), Let's Make A Deal (audience member/partner), People Puzzler.
+Game Show Appearances: The Blind Date, Minute to Win It: Girsls Got Game (Season 2 Episode 39), Let's Make A Deal (audience member/partner), People Puzzler.
 
 From the MTV reality days of the 90's to the rigid and laid-back GSN days of the late 2010's, from big to small and wild to low-key, Laura Medrano has experienced it all. 
 Today, she talks to Game Bouncer about her experiences and advice she has for future game show contestants or those that have yet to have their chance, and about some of the fun behind-the-scenes secrets.
 
 In her spare time, Laura enjoys cooking, eating healthy, and inspiring others to use food to support their overall well-being and reconnect with their bodies.
 
-If you would like to check out more of what Laura does in her spare time, hoping to find a new perspective on food, or looking to support Laura,
-check out her YouTube channel: <a href="https://www.youtube.com/channel/UCAjuiePVytvUloJMsENdvMQ" target="_blank" rel="noopener noreferrer">YouTube channel</a>>
-Laura Medrano has a secret obsession: Not only is she a game show contestant, she is a bit of a game show fanatic…
+If you would like to check out more of what Laura does in her spare time, hoping to find a new perspective on food, or looking to support Laura, ">
+Laura Medrano has a secret obsession: Not only is she a game show contestant, she is a bit of a game show fanatic…</p>
+<p class="youtube-link">
+    Check out her <a href="https://www.youtube.com/channel/UCAjuiePVytvUloJMsENdvMQ">YouTube channel!</a>!
 </p>
+
             <button class="read-more-btn" aria-expanded="false" aria-controls="bonus-desc">Continue reading</button>
           </div>
         </article>
@@ -731,6 +810,7 @@ THE MOB
 The Mob consists of people from all walks of life. An appearance by any individual or group on the Program is at the sole discretion of Producer. - NBC
 
 I WAS THERE – Adam Nedeff, 'Stranger': Credit to Adam Nedeff for this story and The bloog
+
 https://loogslair.wordpress.com/2013/04/13/the-20-worst-game-shows-of-the-past-10-years-part-4/
 
 And that’s when one of the other contestants pointed out how truly silly the jargon was.
@@ -739,10 +819,7 @@ That cracked me up, and the guy was absolutely right.
 
 1 vs 100: Why are you the one, they say? - Game Bouncer
 
-In this game, one player (the One) plays against 100 other people (the Mob). The players are asked a series of questions; if the One correctly guesses, he moves on to the next question, while all Mob members who answered incorrectly are knocked out. 
-The goal of the One is to answer as many questions as it takes to knock out all of the Mob. If the One answers a question incorrectly, the game ends, and the prize money is either distributed evenly amongst any remaining Mob members. 
-On the NBC version, contestants playing as The One were one-and-done, while Mob members were able to stay on the Mob and continue earning money until they were eliminated by incorrectly answering a question, at which point they were replaced. 
-The GSN version again has one-and-done appearances for The One, though this time anybody participating in The Mob did so throughout the entire season, even if eliminated.
+In this game, one player (the One) plays against 100 other people (the Mob). The players are asked a series of questions; if the One correctly guesses, he moves on to the next question, while all Mob members who answered incorrectly are knocked out. The goal of the One is to answer as many questions as it takes to knock out all of the Mob. If the One answers a question incorrectly, the game ends, and the prize money is either distributed evenly amongst any remaining Mob members. On the NBC version, contestants playing as The One were one-and-done, while Mob members were able to stay on the Mob and continue earning money until they were eliminated by incorrectly answering a question, at which point they were replaced. The GSN version again has one-and-done appearances for The One, though this time anybody participating in The Mob did so throughout the entire season, even if eliminated.
 
 https://web.archive.org/web/20070422021424/http://www.nbc.com/Casting/Applications/1v100_rules.pdf
 
@@ -787,8 +864,7 @@ In a game of mob mentality, there are heroes and villains. But in game shows, th
   <div class="time"></div>
 </div>
             <p class="desc" data-fulltext="
-Game Bouncer and AnimationFan04 break down The Chase (GSN), including how it helped save Game Show Network, notable contestants such as Muffy Maracco &
-James Holzhauer, The Beast, Mark Labett, The Host, Brooke Bruns & all the fun rules & changes between the US & UK versions, and what makes adapting it deceptively hard. 
+Game Bouncer and AnimationFan04 break down The Chase (GSN), including how it helped save Game Show Network, notable contestants such as Muffy Maracco & James Holzhauer, The Beast, Mark Labett, The Host, Brooke Bruns & all the fun rules & changes between the US & UK versions, and what makes adapting it deceptively hard. 
 We also talk about changes to the game that impact or may not impact the game or viewing experience.
 
 The Chase is a good game show. Let's talk about it!
@@ -832,21 +908,18 @@ Game Bouncer and AnimationFan04 break down The Chase (GSN), including how it hel
   <div class="time"></div>
 </div>
             <p class="desc" data-fulltext="
-'We've had game shows based on card games. We've had game shows based on pub quizzes.
-But never have we had a game show based on the Copenhagen interpretation of quantum mechanics.
-Until now… In other words, my suitcase contains the financial equivalent of Schrödinger's Cat: 
-a sum that exists in a theoretical superposition, being both substantial and meager until I open and observe it, thereby assigning it a quantifiable value in the physical universe.'
+'We've had game shows based on card games. We've had game shows based on pub quizzes. But never have we had a game show based on the Copenhagen interpretation of quantum mechanics. 
+Until now… In other words, my suitcase contains the financial equivalent of Schrödinger's Cat: a sum that exists in a theoretical superposition, being both substantial and meager until I open and observe it, thereby assigning it a quantifiable value in the physical universe.'
 
 — Charlie Brooker
 
 On December 19, 2005, NBC premiered a U.S. primetime hit hosted by Howie Mandel, with 26 briefcases containing values ranging from $0.01 to $1,000,000, and a glitzy atmosphere. 
-It was an instant hit, eventually leading to promotional tactics such as airing it multiple times per week, in-game gimmicks (such as increased top prizes and literally trying to force a win by adding more million-dollar cases to the board), 
-and also became prone to padding the game with excessive personal stories, celebrity guests, and other unnecessary content. The primetime version aired its final episode on May 18, 2009.
+It was an instant hit, eventually leading to promotional tactics such as airing it multiple times per week, in-game gimmicks (such as increased top prizes and literally trying to force a win by adding more million-dollar cases to the board), and also became prone to padding the game with excessive personal stories, celebrity guests, and other unnecessary content.
+The primetime version aired its final episode on May 18, 2009.
 
 - TV TROPES
 
-The question still remains: Deal or no Deal?
-">
+The question still remains: Deal or no Deal?">
 'We've had game shows based on card games. We've had game shows based on pub quizzes. But never have we had a game show based on the Copenhagen interpretation of quantum mechanics…'
 </p>
             <button class="read-more-btn" aria-expanded="false" aria-controls="ep1-desc">Continue reading</button>
@@ -1140,6 +1213,101 @@ document.addEventListener('DOMContentLoaded', () => {
       const dur = isFinite(audio.duration) ? audio.duration : Number(progress.max);
       audio.currentTime = Math.floor(dur * ratio);
     });
+
+// Initialize all audio players
+document.querySelectorAll('audio').forEach(audio => {
+  const playerId = audio.id;
+  const progressSlider = document.querySelector(`.progress[data-audio="${playerId}"]`);
+  const timeDisplay = document.querySelector(`.time[data-audio="${playerId}"]`);
+  const volumeSlider = document.querySelector(`.volume[data-audio="${playerId}"]`);
+  const playBtn = document.querySelector(`.play[data-audio="${playerId}"]`);
+  const skipBack = document.querySelector(`.skip-back[data-audio="${playerId}"]`);
+  const skipForward = document.querySelector(`.skip-forward[data-audio="${playerId}"]`);
+  const speedSelect = document.querySelector(`.speed[data-audio="${playerId}"]`);
+
+  if (!progressSlider || !timeDisplay) return;
+
+  // Set max & step on metadata load
+  audio.addEventListener('loadedmetadata', () => {
+    progressSlider.max = audio.duration;
+    progressSlider.step = 0.01;
+    updateProgressFill();
+  });
+
+  // Play/pause
+  playBtn?.addEventListener('click', () => {
+    if (audio.paused) audio.play();
+    else audio.pause();
+  });
+
+  // Skip buttons
+  skipBack?.addEventListener('click', () => audio.currentTime = Math.max(0, audio.currentTime - 10));
+  skipForward?.addEventListener('click', () => audio.currentTime = Math.min(audio.duration, audio.currentTime + 10));
+
+  // Playback speed
+  speedSelect?.addEventListener('change', () => audio.playbackRate = parseFloat(speedSelect.value));
+
+  // Volume
+  volumeSlider?.addEventListener('input', () => audio.volume = parseFloat(volumeSlider.value));
+
+  // Track if user is dragging
+  let seeking = false;
+  progressSlider.addEventListener('mousedown', () => seeking = true);
+  progressSlider.addEventListener('mouseup', () => seeking = false);
+
+  let lastSeekTime = 0;
+  let lastSliderValue = 0;
+
+  // Update currentTime when dragging (throttled)
+  progressSlider.addEventListener('input', () => {
+    const now = performance.now();
+    const diff = Math.abs(progressSlider.value - lastSliderValue);
+    if (seeking && (now - lastSeekTime > 30 || diff > 5)) {
+      audio.currentTime = progressSlider.value;
+      lastSeekTime = now;
+      lastSliderValue = progressSlider.value;
+    }
+    updateProgressFill();
+  });
+
+  // Format time MM:SS
+  function formatTime(seconds) {
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
+  }
+
+  // Update time display
+  audio.addEventListener('timeupdate', () => {
+    timeDisplay.textContent = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration || 0)}`;
+    updateProgressFill();
+  });
+
+  // Update slider fill (smooth gradient)
+  function updateProgressFill() {
+    const percentage = (progressSlider.value / progressSlider.max) * 100 || 0;
+    progressSlider.style.background = `linear-gradient(to right, var(--accent) 0%, var(--accent) ${percentage}%, #555 ${percentage}%, #555 100%)`;
+  }
+});
+
+// Keep sliders synced with audio (except when dragging)
+function updateSliders() {
+  document.querySelectorAll('.progress').forEach(slider => {
+    const audio = document.getElementById(slider.dataset.audio);
+    if (!audio) return;
+    if (!slider.matches(':active')) slider.value = audio.currentTime;
+  });
+  requestAnimationFrame(updateSliders);
+}
+requestAnimationFrame(updateSliders);
+
+// Apply for all sliders
+document.querySelectorAll('.progress').forEach(slider => {
+  updateProgressFill(slider);
+  slider.addEventListener('input', () => updateProgressFill(slider));
+  const audio = document.getElementById(slider.dataset.audio);
+  audio.addEventListener('timeupdate', () => updateProgressFill(slider));
+});
 
     // Volume slider: map 0..1 to 0..100 display
     // Ensure default volume if missing
