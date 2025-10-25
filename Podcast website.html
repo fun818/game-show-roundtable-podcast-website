@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Game Show Roundtable — Home</title>
+  <meta name="description" content="A podcast about game shows — deep dives, debates, and stories from across the game show universe." />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    :root {
+  --bg: #071422;
+  --accent: #ffd166;
+  --muted: #9fb3c8;
+  --link: #2ea3ff;
+  --card: #ffffff;
+  --max-width: 1100px;
+  --gap: 18px;
+  --readmore-color: #2ea3ff;
+}
+
+/* Reset & body styles */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Montserrat, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  background: var(--bg); /* flat color */
+  color: #eaf6ff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  mix-blend-mode: overlay;
+  opacity: 0.04;
+  background-color: #2ea3ff;
+}
+
+/* Layout */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 28px;
+}
+
+/* Hero section */
+.hero {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.hero .cover {
+  background-image: url('https://i.ibb.co/mFrgYkCF/Screenshot-2025-10-22-4-54-51-PM.png');
+  background-size: cover;
+  background-position: center;
+  height: 260px;
+  display: block;
+}
+
+.hero .overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+}
+
+h1 {
+  font-family: 'Bebas Neue', 'Playfair Display', serif;
+  letter-spacing: 1px;
+  font-size: 48px;
+  margin: 0;
+  text-align: center;
+  color: var(--accent);
+  text-shadow: 0 6px 20px rgba(0,0,0,0.6);
+}
+
+/* Tagline title (h1) */
+#tagline-title {
+  font-family: 'Bebas Neue', 'Playfair Display', serif;
+  letter-spacing: 1px;
+  font-size: 40px;
+  margin: 0 0 10px 0;
+  text-align: center;
+  color: var(--accent); /* bright accent color */
+  text-shadow: 0 6px 20px rgba(0, 0, 0, 0.6); /* subtle shadow to stand out */
+  font-weight: 125;
+  background: linear-gradient(
+    180deg,
+    rgba(34, 40, 49, 0.7) 0%,   /* deep charcoal tone */
+    rgba(2, 2, 3, 0.9) 100%  /* fades slightly darker */
+  );
+}
+
+#tagline-body {
+  font-family: Montserrat, system-ui, sans-serif;
+  font-size: 18px;
+  font-weight: 475;
+  line-height: 1.6;
+  text-align: center;
+  color: var(--card); /* bright text */
+  margin-bottom: 4px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  /* Accent color + blur */
+  background: rgba(5, 9, 2, 0.8);  /* semi-transparent accent */
+  backdrop-filter: blur(8px);        /* soft blur behind */
+}
+
+/* Grid layout */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: var(--gap);
+}
+
+.layout-wrapper {
+  display: flex;
+  justify-content: flex-end; /* pushes sidebox to right */
+  align-items: center;      /* vertical center */
+}
+
+/* Episodes list */
+.episodes {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Card */
+.card {
+  background: linear-gradient(180deg, #2a3a4d 0%, #1f2b3d 100%);
+  border-radius: 8px;
+  padding: 14px;
+  border: 1px solid rgba(255,255,255,0.03);
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.card h2 {
+  font-family: 'Bebas Neue', Arial, sans-serif;
+  font-size: 20px;
+  margin: 0 0 6px 0;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+h2 {
+  letter-spacing: 0.5px;
+}
+
+
+
+.meta {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+/* Description area */
+.ep-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.desc {
+  color: #e6f5ff;
+  font-size: 14px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  margin: 0 0 10px 0;
+}
+
+.read-more-btn {
+  display: inline-block;
+  border: 0;
+  background: none;
+  padding: 0;
+  margin: 0;
+  color: var(--readmore-color);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+.read-more-btn:focus {
+  outline: 2px dashed var(--link);
+  outline-offset: 3px;
+}
+/* Audio */
+
+/* Audio element */
+.custom-audio-player audio {
+  width: 100%;
+  margin-top: 12px;
+  border-radius: 8px;
+  background: transparent;
+  outline: none;
+}
+
+/* Container */
+.custom-audio-player {
+  border: 1px solid darkcyan;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 20px;
+  background-color: white;
+  max-width: 600px;
+}
+
+/* Buttons */
+.custom-audio-player button {
+  padding: 6px 12px;
+  margin-right: 6px;
+  border: none;
+  border-radius: 6px;
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.custom-audio-player button:hover {
+  background-color: #0056b3;
+}
+
+/* Playback speed dropdown */
+.custom-audio-player select.playback-rate {
+  margin-left: 6px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+/* Progress bar */
+.custom-audio-player input.progress {
+  width: 100%;
+  margin-top: 10px;
+  height: 6px;
+  border-radius: 4px;
+  accent-color: #007bff; /* Chrome/Edge/Safari */
+  cursor: pointer;
+}
+
+/* Volume slider */
+.custom-audio-player input.volume {
+  width: 100%;
+  margin-top: 6px;
+  height: 6px;
+  border-radius: 4px;
+  accent-color: #28a745; /* green for volume */
+  cursor: pointer;
+}
+
+/* Label styling */
+.custom-audio-player label {
+  margin-left: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #0056b3;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Time display (MM:SS / total) */
+.custom-audio-player .time {
+  font-family: monospace;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333; /* change to white if you use dark backgrounds */
+  margin-top: 6px;
+  text-align: right;
+}
+
+.custom-audio-player .volume-number {
+  color: #28a745; /* green — change to whatever fits your design */
+  font-weight: bold;
+  margin-left: 8px;
+  display: inline-block;
+}
+
+/* Volume wrapper */
+.volume-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 80%;      /* slightly shorter than progress bar */
+  margin: 0 auto 4px; /* spacing below volume bar */
+}
+
+/* Volume slider styling */
+.volume-wrapper .volume {
+  width: 100%;  /* fills wrapper width */
+}
+
+/* Volume number */
+.volume-number {
+  font-weight: 600;
+  color: #28a745; /* or any color */
+  min-width: 30px; /* ensures number doesn't collapse */
+  text-align: right;
+}
+
+/* Thumbnails */
+.ep-thumb {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+  border: 1px solid rgba(255,255,255,0.04);
+  background: rgba(255,255,255,0.02);
+}
+
+/* Sidebar */
+.sidebar {
+  position: sticky;
+  top: 18px;
+}
+
+/* Sidebox container */
+.layout-wrapper {
+  display: flex;
+  justify-content: flex-end; /* push sidebox to right */
+  align-items: center;       /* vertical center */
+  min-height: 100vh;         /* ensures vertical centering on full page */
+}
+
+.sidebox {
+  background: rgba(255,255,255,0.03);
+  padding: 25px;            /* reduce padding for better space usage */
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.02);
+  max-width: 300px;
+  width: 100%;              /* allow some flexibility */
+  box-sizing: border-box;
+  z-index: 100;
+  max-height: 115vh;
+  overflow-y: auto;
+}
+
+/* Headings */
+.sidebox h4 {
+  margin: 0 0 8px 0;
+  color: var(--accent);
+  letter-spacing: 0.5px;
+  font-size: 36px;
+  font-family: 'Bebas Neue', Arial, sans-serif;
+}
+
+/* Lists */
+.sidebox ul {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0 0 0;
+}
+
+.sidebox li {
+  margin: 6px 0;
+}
+
+.sidebox a {
+  color: var(--link);
+  text-decoration: underline;
+  font-weight: 500;
+  font-size: 25px;
+}
+
+.sidebox a:hover {
+  background: rgba(46,163,255,0.06);
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+/* Side notes */
+.side-note {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 12px;
+  text-align: center;
+}
+
+/* Platform links: vertical single-column list */
+.platform-links {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+}
+
+.platform-links li {
+  margin: 6px 0;
+}
+
+.platform-links a {
+  text-decoration: none;
+  background: rgba(255,255,255,0.08);
+  color: var(--accent);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  transition: background 0.2s, transform 0.1s;
+  font-size: 20px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.platform-links a img {
+  margin-right: 6px;
+}
+
+.platform-links a:hover {
+  background: var(--accent);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Vertical links for secondary platforms */
+.platform-links.vertical li {
+  display: block;
+  margin: 4px 0;
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  .layout-wrapper {
+    display: flex;
+    justify-content: center; /* center sidebox on mobile */
+    align-items: flex-start;
+    padding-top: 20px;
+    min-height: auto;
+  }
+
+  .sidebox {
+    width: 90%;       /* fill most of screen on mobile */
+    max-width: none;
+    padding: 20px;
+  }
+}
+
+.hero .overlay > div {
+  max-height: 220px; /* or whatever fits your hero */
+  overflow-y: auto;   /* vertical scroll if needed */
+  scroll-behavior: smooth;
+  padding-right: 4px; /* avoid text touching scrollbar */
+}
+
+/* Optional: show scrollbar only when needed (Webkit browsers) */
+.hero .overlay > div::-webkit-scrollbar {
+  width: 6px;
+}
+.hero .overlay > div::-webkit-scrollbar-thumb {
+  background-color: rgba(255,255,255,0.4);
+  border-radius: 3px;
+}
+.hero .overlay > div::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Footer */
+footer {
+  margin-top: 28px;
+  color: var(--muted);
+  font-size: 18px;
+  padding: 18px 0;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 762px) {
+  .layout-wrapper {
+    justify-content: center; /* centers sidebox below main content */
+    margin-top: 20px;        /* give some breathing room */
+  }
+}
+
+@media (max-width: 880px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+@media (max-width: 762px) {
+  .hero .cover {
+    height: auto;
+    min-height: 200px;
+  }
+}
+
+@media (max-width: 880px) {
+  .sidebox {
+    position: relative;
+    top: auto;
+    right: auto;
+    transform: none;
+    margin: 20px auto;
+    max-width: 90%;
+  }
+}
+@media (max-width: 762px) {
+  .hero .overlay {
+    padding: 12px; /* reduce padding on small screens */
+    align-items: flex-start; /* optional: move text slightly up */
+  }
+
+  #tagline-body {
+    font-size: 16px; /* shrink text slightly */
+    padding: 8px 12px;
+  }
+
+  #tagline-title {
+    font-size: 28px; /* smaller heading to prevent overflow */
+  }
+}
+
+
+  h1 {
+    font-size: 34px;
+  }
+
+  .card {
+    flex-direction: column;
+  }
+
+  .ep-thumb {
+    width: 100%;
+    height: 160px;
+  }
+}
+
+/* Small utility for badges/icons */
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header class="hero" role="banner">
+      <div class="cover" aria-hidden="true"></div>
+      <div class="overlay">
+        <div>
+          <h1 id="tagline-title" class="tagline">Game Show Roundtable</h1>
+          <div class="tagline" id="tagline-body">
+            <p>
+              A podcast about game shows that talks about all different kinds of game shows
+              and aims to reach all members of the game show community, new and old.
+              Each week, we talk about a different game show and what it contributes
+              to the overall game show universe.
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout" role="main">
+
+      <section class="episodes" id="episodes">
+
+        <!-- Episode 4 -->
+        <article class="card" id="ep4">
+          <img class="ep-thumb" src="https://storage.buzzsprout.com/houy9t7ljfmfqno0zhkz7l2p9xe5?.jpg" alt="Episode 4 thumbnail">
+          <div class="ep-body">
+            <h2>Episode 4 | Syndicated Millionaire (WWTBAM)</h2>
+            <div class="meta">Oct 19, 2025 • 54:41</div>
+            <!-- Player 4 -->
+<div class="custom-audio-player">
+  <audio preload="metadata" controlsList="nodownload" src="https://www.buzzsprout.com/2514994/episodes/17913854-episode-4-syndicated-millionaire-wwtbam.mp3"></audio>
+  <button class="play-pause">Play</button>
+  <button class="skip-back">« 10s</button>
+  <button class="skip-forward">10s »</button>
+  <label>Speed:
+    <select class="playback-rate">
+      <option value="0.5">0.5x</option>
+      <option value="0.75">0.75x</option>
+      <option value="1" selected>1x</option>
+      <option value="1.25">1.25x</option>
+      <option value="1.5">1.5x</option>
+      <option value="1.75">1.75x</option>
+      <option value="2">2x</option>
+      <option value="2.25">2.25x</option>
+      <option value="2.5">2.5x</option>
+    </select>
+  </label>
+  <div class="volume-wrapper">
+    <input type="range" class="volume" min="0" max="1" step="0.01" value="1">
+    <div class="volume-number">100</div>
+  </div>
+  <input type="range" class="progress" min="0" max="100" value="0">
+  <div class="time"></div>
+</div>
+            <p class="desc" data-fulltext="
+You may leave home and come back to the same house you once were in,
+but it may not feel the same because you may not come back the same person
+you were before. This may be what happened to Millionaire aka WWTBAM.
+Today we will discuss how everything came full-circle for this half-hour show.
+
+----
+American Millionaire was a massive hit in the beginning, spawning a revival
+in game shows in general and big money, prime time quiz shows in particular
+(including many other imported shows). Ratings eventually tanked, however,
+with most people pointing their fastest fingers at ABC for milking the show
+to the point of overexposure (at one point, it was aired four nights a week).
+It still lived, however, in a more normal (for a game show) weekday afternoon
+syndication format, but the show's popularity and viewership has dipped
+quite a bit since then. The U.S. syndicated version was cancelled on May 31, 2019
+after 17 seasons.
+
+So how did this game show change over time with its syndicated, AOL audience,
+clock, shuffle, and revival of its classic format?
+
+The US version underwent a massive alteration of its format for its ninth
+syndicated season. The first ten questions were played for amounts ranging
+from $100 to $25,000, except that the value of each question was randomized,
+was only revealed once the question is answered correctly, and was added to a bank.
+
+And no more hot seat.
+
+Additionally, question difficulties and categories were randomized.
+The lifelines were also changed for this, only Ask the Audience remains
+alongside two instances of a new lifeline called Jump the Question which
+lets the player skip over a question, at the expense of not being able to
+collect the money behind it. For its 2014-15 season, one of the Jumps
+were replaced by 'Plus One', which is basically Phone-a-Friend except
+you have to bring the friend with you. In an act of desperation, the 2015-16
+season returned to the classic structure, using a 14-question progression
+and reviving 50:50 in place of the jump.
+
+'Is that your final answer?' - TV Tropes
+">
+You may leave home and come back to the same house you once were in, but it may not feel the same because you may not come back the same person you were before. This may be what happened to Millionaire aka WWTBAM…
+</p>
+            <button class="read-more-btn" aria-expanded="false" aria-controls="ep4-desc">Continue reading</button>
+          </div>
+        </article>
+
+        <!-- Bonus Interview -->
+        <article class="card" id="bonus">
+          <img class="ep-thumb" src="https://storage.buzzsprout.com/onj9rg9pbdkgz1w5p0m89ik3vrex?.jpg" alt="Bonus episode thumbnail">
+          <div class="ep-body">
+            <h2>BONUS — Interview with Laura Medrano</h2>
+            <div class="meta">Aug 31, 2025 • 24:07</div>
+            <!-- Player Bonus -->
+<div class="custom-audio-player">
+  <audio preload="metadata" controlsList="nodownload" src="https://www.buzzsprout.com/2514994/episodes/17762902-bonus-interview-with-game-show-contestant-laura-medrano.mp3"></audio>
+  <button class="play-pause">Play</button>
+  <button class="skip-back">« 10s</button>
+  <button class="skip-forward">10s »</button>
+  <label>Speed:
+    <select class="playback-rate">
+      <option value="0.5">0.5x</option>
+      <option value="0.75">0.75x</option>
+      <option value="1" selected>1x</option>
+      <option value="1.25">1.25x</option>
+      <option value="1.5">1.5x</option>
+      <option value="1.75">1.75x</option>
+      <option value="2">2x</option>
+      <option value="2.25">2.25x</option>
+      <option value="2.5">2.5x</option>
+    </select>
+  </label>
+  <div class="volume-wrapper">
+    <input type="range" class="volume" min="0" max="1" step="0.01" value="1">
+    <div class="volume-number">100</div>
+  </div>
+  <input type="range" class="progress" min="0" max="100" value="0">
+  <div class="time"></div>
+</div>
+            <p class="desc" data-fulltext="
+Laura Medrano has a secret obsession: Not only is she a game show contestant,
+she is a bit of a game show fanatic!
+
+Game Show Appearances: The Blind Date, Minute to Win It: Girsls Got Game
+(Season 2 Episode 39), Let's Make A Deal (audience member/partner), People Puzzler
+
+From the MTV reality days of the 90's to the rigid and laid-back GSN days
+of the late 2010's, from big to small and wild to low-key, Laura Medrano has
+experienced it all. Today, she talks to Game Bouncer about her experiences
+and advice she has for future game show contestants or those that have yet
+to have their chance, and about some of the fun behind-the-scenes secrets.
+
+In her spare time, Laura enjoys cooking, eating healthy, and inspiring others
+to use food to support their overall well-being and reconnect with their bodies.
+
+If you would like to check out more of what Laura does in her spare time,
+hoping to find a new perspective on food, or looking to support Laura,
+check out her YouTube channel:
+https://www.youtube.com/channel/UCAjuiePVytvUloJMsENdvMQ
+">
+Laura Medrano has a secret obsession: Not only is she a game show contestant, she is a bit of a game show fanatic…
+</p>
+            <button class="read-more-btn" aria-expanded="false" aria-controls="bonus-desc">Continue reading</button>
+          </div>
+        </article>
+
+        <!-- Episode 3 -->
+        <article class="card" id="ep3">
+          <img class="ep-thumb" src="https://storage.buzzsprout.com/9ngcagbi5jot0n6dmfg833q3omgt?.jpg" alt="Episode 3 thumbnail">
+          <div class="ep-body">
+            <h2>Episode 3 | 1 vs 100</h2>
+            <div class="meta">Aug 29, 2025 • 41:34</div>     
+            <!-- Player 3 -->
+<div class="custom-audio-player">
+  <audio preload="metadata" controlsList="nodownload" src="https://www.buzzsprout.com/2514994/episodes/17757663-episode-3-1-vs-100.mp3"></audio>
+  <button class="play-pause">Play</button>
+  <button class="skip-back">« 10s</button>
+  <button class="skip-forward">10s »</button>
+  <label>Speed:
+    <select class="playback-rate">
+      <option value="0.5">0.5x</option>
+      <option value="0.75">0.75x</option>
+      <option value="1" selected>1x</option>
+      <option value="1.25">1.25x</option>
+      <option value="1.5">1.5x</option>
+      <option value="1.75">1.75x</option>
+      <option value="2">2x</option>
+      <option value="2.25">2.25x</option>
+      <option value="2.5">2.5x</option>
+    </select>
+  </label>
+  <div class="volume-wrapper">
+    <input type="range" class="volume" min="0" max="1" step="0.01" value="1">
+    <div class="volume-number">100</div>
+  </div>
+  <input type="range" class="progress" min="0" max="100" value="0">
+  <div class="time"></div>
+</div>      
+            <p class="desc" data-fulltext="
+In a game of mob mentality, there are heroes and villains. But in game shows,
+there is no such thing. There are only contestants and trivia experts.
+Sometimes this is playful. But remember that being cast on a game show
+takes more than just knowledge. It takes a personality. But the line between
+entertaining and cherry-picking is a fine line. On this show, it will take
+everything you have to become the one.
+
+THE MOB
+The Mob consists of people from all walks of life. An appearance by any
+individual or group on the Program is at the sole discretion of Producer. - NBC
+
+I WAS THERE – Adam Nedeff, 'Stranger': Credit to Adam Nedeff for this story and The bloog
+
+https://loogslair.wordpress.com/2013/04/13/the-20-worst-game-shows-of-the-past-10-years-part-4/
+
+And that’s when one of the other contestants pointed out how truly silly the jargon was.
+I’ll never forget this: 'I don’t have anything against bartenders, but it bothers
+me that our team includes a surgeon, a firefighter, and a teacher, and the ‘hero’
+is a bartender.' That cracked me up, and the guy was absolutely right.
+
+1 vs 100: Why are you the one, they say? - Game Bouncer
+
+In this game, one player (the One) plays against 100 other people (the Mob). The players are asked a series of questions; if the One correctly guesses, he moves on to the next question, while all Mob members who answered incorrectly are knocked out. The goal of the One is to answer as many questions as it takes to knock out all of the Mob. If the One answers a question incorrectly, the game ends, and the prize money is either distributed evenly amongst any remaining Mob members. On the NBC version, contestants playing as The One were one-and-done, while Mob members were able to stay on the Mob and continue earning money until they were eliminated by incorrectly answering a question, at which point they were replaced. The GSN version again has one-and-done appearances for The One, though this time anybody participating in The Mob did so throughout the entire season, even if eliminated.
+
+https://web.archive.org/web/20070422021424/http://www.nbc.com/Casting/Applications/1v100_rules.pdf
+
+A COOL RULES SHEET from way back about 1 vs 100
+">
+In a game of mob mentality, there are heroes and villains. But in game shows, there is no such thing. There are only contestants and trivia experts…
+</p>
+            <button class="read-more-btn" aria-expanded="false" aria-controls="ep3-desc">Continue reading</button>
+          </div>
+        </article>
+
+        <!-- Episode 2 -->
+        <article class="card" id="ep2">
+          <img class="ep-thumb" src="https://storage.buzzsprout.com/sx4zr6rf2pjk833ioqmf0m8w6ulf?.jpg" alt="Episode 2 thumbnail">
+          <div class="ep-body">
+            <h2>Episode 2 | The Chase</h2>
+            <div class="meta">Aug 14, 2025 • 49:47</div>
+            <!-- Player 2 -->
+<div class="custom-audio-player">
+  <audio preload="metadata" controlsList="nodownload" src="https://www.buzzsprout.com/2514994/episodes/17673338-episode-2-the-chase.mp3"></audio>
+  <button class="play-pause">Play</button>
+  <button class="skip-back">« 10s</button>
+  <button class="skip-forward">10s »</button>
+  <label>Speed:
+    <select class="playback-rate">
+      <option value="0.5">0.5x</option>
+      <option value="0.75">0.75x</option>
+      <option value="1" selected>1x</option>
+      <option value="1.25">1.25x</option>
+      <option value="1.5">1.5x</option>
+      <option value="1.75">1.75x</option>
+      <option value="2">2x</option>
+      <option value="2.25">2.25x</option>
+      <option value="2.5">2.5x</option>
+    </select>
+  </label>
+  <div class="volume-wrapper">
+    <input type="range" class="volume" min="0" max="1" step="0.01" value="1">
+    <div class="volume-number">100</div>
+  </div>
+  <input type="range" class="progress" min="0" max="100" value="0">
+  <div class="time"></div>
+</div>
+            <p class="desc" data-fulltext="
+Game Bouncer and AnimationFan04 break down The Chase (GSN), including how it
+helped save Game Show Network, notable contestants such as Muffy Maracco &
+James Holzhauer, The Beast, Mark Labett, The Host, Brooke Bruns &
+all the fun rules & changes between the US & UK versions, and what makes
+adapting it deceptively hard. We also talk about changes to the game that
+impact or may not impact the game or viewing experience.
+
+The Chase is a good game show. Let's talk about it!
+">
+Game Bouncer and AnimationFan04 break down The Chase (GSN), including how it helped save Game Show Network, notable contestants and changes… 
+</p>
+            <button class="read-more-btn" aria-expanded="false" aria-controls="ep2-desc">Continue reading</button>
+          </div>
+        </article>
+
+        <!-- Episode 1 -->
+        <article class="card" id="ep1">
+          <img class="ep-thumb" src="https://storage.buzzsprout.com/soh88lwdk0340cx7t79s3wl4yfy5?.jpg" alt="Episode 1 thumbnail">
+          <div class="ep-body">
+            <h2>Episode 1 | Deal or No Deal</h2>
+            <div class="meta">Jul 28, 2025 • 42:57</div>
+            <!-- Player 1 -->
+<div class="custom-audio-player">
+  <audio preload="metadata" controlsList="nodownload" src="https://www.buzzsprout.com/2514994/episodes/17579608-episode-1-deal-or-no-deal.mp3"></audio>
+  <button class="play-pause">Play</button>
+  <button class="skip-back">« 10s</button>
+  <button class="skip-forward">10s »</button>
+  <label>Speed:
+    <select class="playback-rate">
+      <option value="0.5">0.5x</option>
+      <option value="0.75">0.75x</option>
+      <option value="1" selected>1x</option>
+      <option value="1.25">1.25x</option>
+      <option value="1.5">1.5x</option>
+      <option value="1.75">1.75x</option>
+      <option value="2">2x</option>
+      <option value="2.25">2.25x</option>
+      <option value="2.5">2.5x</option>
+    </select>
+  </label>
+  <div class="volume-wrapper">
+    <input type="range" class="volume" min="0" max="1" step="0.01" value="1">
+    <div class="volume-number">100</div>
+  </div>
+  <input type="range" class="progress" min="0" max="100" value="0">
+  <div class="time"></div>
+</div>
+            <p class="desc" data-fulltext="
+'We've had game shows based on card games. We've had game shows based on
+pub quizzes. But never have we had a game show based on the Copenhagen
+interpretation of quantum mechanics. Until now… In other words, my suitcase
+contains the financial equivalent of Schrödinger's Cat: a sum that exists
+in a theoretical superposition, being both substantial and meager until I
+open and observe it, thereby assigning it a quantifiable value in the physical universe.'
+
+— Charlie Brooker
+
+On December 19, 2005, NBC premiered a U.S. primetime hit hosted by Howie Mandel,
+with 26 briefcases containing values ranging from $0.01 to $1,000,000,
+and a glitzy atmosphere. It was an instant hit, eventually leading to
+promotional tactics such as airing it multiple times per week, in-game gimmicks
+(such as increased top prizes and literally trying to force a win by adding
+more million-dollar cases to the board), and also became prone to padding
+the game with excessive personal stories, celebrity guests, and other unnecessary content.
+The primetime version aired its final episode on May 18, 2009.
+
+- TV TROPES
+
+The question still remains: Deal or no Deal?
+">
+'We've had game shows based on card games. We've had game shows based on pub quizzes. But never have we had a game show based on the Copenhagen interpretation of quantum mechanics…'
+</p>
+            <button class="read-more-btn" aria-expanded="false" aria-controls="ep1-desc">Continue reading</button>
+          </div>
+        </article>
+
+      </section>
+
+  <div class="sidebox">
+    <h4>Listen Anywhere</h4>
+    <ul>
+      <li>
+        <a href="https://podcasts.apple.com/us/podcast/game-show-roundtable/id1829599910" target="_blank" rel="noopener">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Podcasts_%28iOS%29.svg/1200px-Podcasts_%28iOS%29.svg.png"
+               width="15" height="15" alt="Apple Podcasts logo">Apple Podcasts
+        </a>
+      </li>
+      <li>
+        <a href="https://open.spotify.com/show/59dESLinq2fKrxo3MTPnCz" target="_blank" rel="noopener">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Spotify_icon.svg/512px-Spotify_icon.svg.png"
+               width="15" height="15" alt="Spotify logo">Spotify
+        </a>
+      </li>
+      <li>
+        <a href="https://www.deezer.com/us/show/1002073821" target="_blank" rel="noopener">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Deezer_Icon.svg/768px-Deezer_Icon.svg.png"
+               width="15" height="15" alt="Deezer logo">Deezer
+        </a>
+      </li>
+      <li>
+        <a href="https://www.podchaser.com/podcasts/game-show-roundtable-6168320" target="_blank" rel="noopener">
+          <img src="https://images.podchaser.com/logos/Podchaser+-+Logo+-+Badge+-+Large.png"
+               width="15" height="15" alt="Podchaser logo">Podchaser
+        </a>
+      </li>
+      <li>
+        <a href="https://player.fm/series/game-show-roundtable" target="_blank" rel="noopener">
+          <img src="https://www.st-aug.edu/wp-content/uploads/2021/09/playerfm-logo-d9141aaecee4e24692039ae3ffab1404a91b496e507a5cebbbb4df96409e129b.png"
+               width="15" height="15" alt="Player FM logo">Player FM
+        </a>
+      </li>
+      <li>
+        <a href="https://www.youtube.com/@GameShowRoundtable" target="_blank" rel="noopener">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/768px-YouTube_full-color_icon_%282017%29.svg.png"
+               width="16" height="16" alt="YouTube logo">YouTube
+        </a>
+      </li>
+      <li>
+  <a href="https://feeds.buzzsprout.com/2514994.rss" target="_blank" rel="noopener">
+    <img
+      src="https://upload.wikimedia.org/wikipedia/en/thumb/4/43/Feed-icon.svg/192px-Feed-icon.svg.png"
+      width="16"
+      height="16"
+      alt="RSS logo"
+      style="vertical-align: middle; margin-right: 6px;">RSS Feed
+  </a>
+</li>
+
+    </ul>
+
+  <div class="side-note">
+  <p style="margin:0 0 8px 0;font-size:13px;color:var(--muted);">Also available on:</p>
+
+  <ul class="platform-links vertical" aria-label="Podcast platforms">
+    <li><a href="https://overcast.fm/itunes1829599910" target="_blank" rel="noopener">Overcast</a></li>
+    <li><a href="https://castro.fm/podcast/baae0484-5e60-4ca6-9243-39aa1519bafd" target="_blank" rel="noopener">Castro</a></li>
+    <li><a href="https://castbox.fm/vh/6694917" target="_blank" rel="noopener">Castbox</a></li>
+    <li><a href="https://go.goodpods.com/9rjBN9" target="_blank" rel="noopener">Goodpods</a></li>
+    <li><a href="https://truefans.fm/game-show-roundtable" target="_blank" rel="noopener">TrueFans</a></li>
+    <li><a href="https://podcastaddict.com/podcast/game-show-roundtable/6025548" target="_blank" rel="noopener">Podcast Addict</a></li>
+    <li><a href="https://podcastindex.org/podcast/7428369" target="_blank" rel="noopener">Podcast Index</a></li>
+    <li><a href="https://lnns.co/sNRpkMgbJuS" target="_blank" rel="noopener">Listen Notes</a></li>
+    <li><a href="https://pocketcasts.com/podcast/game-show-roundtable/18803360-4e5f-013e-59f9-0eb76ff9618b" target="_blank" rel="noopener">Pocket Casts</a></li>
+  </ul>
+</div>
+
+
+    <div class="side-note">
+      Interested in co-hosting? <br>
+      <a href="https://forms.gle/kKt9dgFwkJBLeQeG8" target="_blank">Click Here!</a>
+    </div>
+  </div>
+</aside>
+    </main>
+
+    <footer>
+      <div style="font-size:15px;color:var(--muted)">
+        © 2025 Game Show Roundtable — Hosted by Game Bouncer (Jay)
+      </div>
+    </footer>
+
+  </div>
+</body>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // --- CONFIG ---
+  const CHAR_LIMIT = 260; // how many chars before "Continue reading"
+  const DEBUG = true;
+
+  // --- HELPER: truncate string ---
+  function truncateString(str, n){
+    if(!str) return '';
+    if(str.length <= n) return str;
+    let cut = str.slice(0, n);
+    const lastSpace = cut.lastIndexOf(' ');
+    if(lastSpace > Math.floor(n * 0.6)) cut = cut.slice(0, lastSpace);
+    return cut + '…';
+  }
+
+  // --- LAZY THUMBNAILS ---
+  document.querySelectorAll('.ep-thumb').forEach(img => {
+    const ds = img.getAttribute('data-src');
+    if(ds && img.src && img.src.includes('R0lGODlhAQABA')) {
+      img.src = ds;
+    }
+  });
+
+  // --- EXPAND/COLLAPSE DESCRIPTIONS ---
+  document.querySelectorAll('.card').forEach(card => {
+    const desc = card.querySelector('.desc');
+    const btn = card.querySelector('.read-more-btn');
+    if(!desc || !btn) return;
+
+    const full = (desc.getAttribute('data-fulltext') || desc.textContent || '').trim();
+    const plain = full.replace(/\s+/g, ' ').trim();
+    const trimmed = truncateString(plain, CHAR_LIMIT);
+    const needsTrunc = plain.length > CHAR_LIMIT;
+
+    desc.textContent = needsTrunc ? trimmed : plain;
+    btn.style.display = needsTrunc ? 'inline-block' : 'none';
+
+    const descId = card.id ? card.id + '-desc' : 'desc-' + Math.random().toString(36).slice(2,9);
+    desc.setAttribute('id', descId);
+    btn.setAttribute('aria-controls', descId);
+    btn.setAttribute('aria-expanded', 'false');
+
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      if(expanded){
+        desc.textContent = trimmed;
+        btn.textContent = 'Continue reading';
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        desc.textContent = full;
+        btn.textContent = 'Read less';
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // --- DISABLE RIGHT-CLICK ON AUDIO PLAYERS ---
+  document.querySelectorAll('audio').forEach(audio => {
+    audio.addEventListener('contextmenu', e => {
+      e.preventDefault();
+      alert("Right-click disabled on audio player");
+    });
+  });
+
+  if(DEBUG) console.log("Podcast scripts initialized.");
+
+});
+document.addEventListener('DOMContentLoaded', () => {
+
+  // format seconds into M:SS or H:MM:SS
+  function formatTime(seconds) {
+    if (!isFinite(seconds) || seconds <= 0) return '0:00';
+    const s = Math.floor(seconds % 60).toString().padStart(2, '0');
+    const mTotal = Math.floor(seconds / 60);
+    const h = Math.floor(mTotal / 60);
+    const m = (mTotal % 60).toString().padStart(2, '0');
+    return h > 0 ? `${h}:${m}:${s}` : `${mTotal}:${s}`;
+  }
+
+  // Ensure only one audio plays at a time
+  function pauseAllExcept(exceptAudio) {
+    document.querySelectorAll('.custom-audio-player audio').forEach(a => {
+      if (a !== exceptAudio) a.pause();
+    });
+  }
+
+  document.querySelectorAll('.custom-audio-player').forEach(player => {
+    const audio = player.querySelector('audio');
+    const playBtn = player.querySelector('.play-pause');
+    const skipBack = player.querySelector('.skip-back');
+    const skipFwd = player.querySelector('.skip-forward');
+    const rateSel = player.querySelector('.playback-rate');
+    const progress = player.querySelector('.progress');
+    const volume = player.querySelector('.volume');
+    const timeDisplay = player.querySelector('.time');
+
+    if (!audio) return;
+
+    // Create a numeric volume display element (0-100) next to the volume slider
+    let volNumber = player.querySelector('.volume-number');
+    if (!volNumber) {
+      volNumber = document.createElement('div');
+      volNumber.className = 'volume-number';
+      volNumber.style.minWidth = '44px';
+      volNumber.style.textAlign = 'right';
+      volNumber.style.fontWeight = '600';
+      volNumber.style.marginLeft = '8px';
+      // append into meta-row if present, otherwise after volume input
+      const metaRow = player.querySelector('.meta-row');
+      if (metaRow) metaRow.appendChild(volNumber);
+      else volume.insertAdjacentElement('afterend', volNumber);
+    }
+
+    // Disable right-click and dragging on audio
+    audio.addEventListener('contextmenu', e => e.preventDefault());
+    audio.addEventListener('dragstart', e => e.preventDefault());
+
+    // If progress is intended to map to seconds, set its type accordingly.
+    // We'll set progress.max = Math.floor(duration) on loadedmetadata.
+    progress.value = 0;
+
+    // Update UI when metadata is available
+    audio.addEventListener('loadedmetadata', () => {
+      const dur = isFinite(audio.duration) ? Math.floor(audio.duration) : 0;
+      // If progress is a seconds-based range, set max to duration for accurate seeking
+      progress.max = dur > 0 ? dur : 100;
+      // initial time display
+      timeDisplay.textContent = `${formatTime(0)} / ${formatTime(audio.duration)}`;
+    });
+
+    // Update time & progress continually
+    audio.addEventListener('timeupdate', () => {
+      const cur = Math.floor(audio.currentTime || 0);
+      const dur = isFinite(audio.duration) ? Math.floor(audio.duration) : 0;
+      progress.value = cur;
+      timeDisplay.textContent = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
+
+      // progress visual fill (gradient) — guard divide by zero
+      const max = Number(progress.max) || 1;
+      const pct = (Number(progress.value) / max) * 100;
+      progress.style.background = `linear-gradient(90deg, #0d6efd ${pct}%, #e9ecef ${pct}%)`;
+    });
+
+    // Play / Pause behavior
+    playBtn.addEventListener('click', async () => {
+      if (audio.paused) {
+        pauseAllExcept(audio);
+        try {
+          await audio.play();
+          playBtn.textContent = 'Pause';
+        } catch (err) {
+          console.warn('Playback failed (autoplay or other):', err);
+        }
+      } else {
+        audio.pause();
+        playBtn.textContent = 'Play';
+      }
+    });
+
+    // Keep play button label in sync
+    audio.addEventListener('play', () => playBtn.textContent = 'Pause');
+    audio.addEventListener('pause', () => playBtn.textContent = 'Play');
+    audio.addEventListener('ended', () => {
+      playBtn.textContent = 'Play';
+      // optionally reset to start
+      // audio.currentTime = 0;
+    });
+
+    // Skip buttons
+    skipBack.addEventListener('click', () => {
+      audio.currentTime = Math.max(0, audio.currentTime - 10);
+    });
+    skipFwd.addEventListener('click', () => {
+      audio.currentTime = Math.min(audio.duration || Infinity, audio.currentTime + 10);
+    });
+
+    // Playback rate
+    if (rateSel) {
+      rateSel.addEventListener('change', () => {
+        audio.playbackRate = parseFloat(rateSel.value) || 1;
+      });
+      // set initial sync
+      audio.playbackRate = parseFloat(rateSel.value) || 1;
+    }
+
+    // Progress seeking: input (drag) and click
+    progress.addEventListener('input', () => {
+      audio.currentTime = Number(progress.value);
+    });
+
+    progress.addEventListener('click', (e) => {
+      const rect = progress.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const ratio = Math.max(0, Math.min(1, clickX / rect.width));
+      const dur = isFinite(audio.duration) ? audio.duration : Number(progress.max);
+      audio.currentTime = Math.floor(dur * ratio);
+    });
+
+    // Volume slider: map 0..1 to 0..100 display
+    // Ensure default volume if missing
+    if (typeof audio.volume === 'number') {
+      // sync initial values
+      if (volume) {
+        audio.volume = Number(volume.value) ?? 1;
+      } else {
+        audio.volume = audio.volume ?? 1;
+      }
+      volNumber.textContent = Math.round(audio.volume * 100);
+    }
+
+    if (volume) {
+      volume.addEventListener('input', () => {
+        const v = Number(volume.value);
+        audio.volume = v;
+        volNumber.textContent = Math.round(v * 100);
+      });
+
+      // also update vol number if audio.volume changed externally
+      audio.addEventListener('volumechange', () => {
+        const v = Number(audio.volume) || 0;
+        volNumber.textContent = Math.round(v * 100);
+        // keep range in sync
+        if (Number(volume.value) !== v) volume.value = v;
+      });
+    }
+
+    // accessibility: keyboard space toggles play/pause for focused button
+    playBtn.addEventListener('keydown', (e) => {
+      if (e.code === 'Space') {
+        e.preventDefault();
+        playBtn.click();
+      }
+    });
+
+    // If the page had autoplay restrictions and loadedmetadata didn't fire,
+    // try to set duration display later if possible
+    setTimeout(() => {
+      if (!isFinite(audio.duration)) return;
+      if (Number(progress.max) !== Math.floor(audio.duration)) {
+        progress.max = Math.floor(audio.duration);
+      }
+      timeDisplay.textContent = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
+    }, 1200);
+
+  });
+
+});
+</script>
+</body>
+</html>
